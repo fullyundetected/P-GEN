@@ -1,0 +1,25 @@
+[package]
+name = "P-GEN"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+egui = "0.27.2"
+egui_extras = { version = "0.27.2", features = ["all_loaders"] }
+eframe = { version = "0.27.2", default-features = false, features = [
+    "default_fonts",
+    "glow",
+] }
+
+rand = "0.8.5"
+sha3 = "0.10.8"
+blake3 = "1.5.4"
+whirlpool = "0.10.4"
+chacha20 = "0.9.1"
+
+[dependencies.windows-sys]
+version = "0.52.0"
+features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging"
+]
