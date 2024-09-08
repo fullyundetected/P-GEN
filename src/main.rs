@@ -96,7 +96,7 @@ impl eframe::App for PigeonInstance {
             ui.allocate_ui_at_rect(egui::Rect::from_two_pos(Pos2::new(693.0, 20.0), Pos2::new(800.0, 200.0)), |ui| {
                 let regenerate_password_button = ui.add(Button::new("  🔄").rounding(0.0).min_size(Vec2::new(28.0, 25.0)));
                 gui::draw_rect_stroke(ui.painter(), regenerate_password_button.rect, Color32::from_rgb(54, 98, 54));
-                if regenerate_password_button.clicked() { self.password_textedit = generator::generate_password(self, &self.password_params); }
+                if regenerate_password_button.clicked() { self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1; }
             });
 
             ui.allocate_ui_at_rect(egui::Rect::from_two_pos(Pos2::new(20.0, 60.0), Pos2::new(744.0, 140.0)), |ui| {
@@ -133,12 +133,12 @@ impl eframe::App for PigeonInstance {
             if textedit_updated {
                 self.password_params.size = self.password_size_str.parse::<u32>().unwrap();
                 if !reverted {
-                    self.password_textedit = generator::generate_password(self, &self.password_params);
+                    self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1;
                 }
             } else {
                 if self.password_params.size != self.password_size_str.parse::<u32>().unwrap() {
                     self.password_size_str = self.password_params.size.to_string();
-                    self.password_textedit = generator::generate_password(self, &self.password_params);
+                    self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1;
                 }
             }
 
@@ -277,15 +277,15 @@ impl eframe::App for PigeonInstance {
                     } else {
                         gui::draw_rect_stroke(ui.painter(), use_brackets_button.rect, Color32::from_rgb(50, 50, 55));
                     }
-                    if uppercase_characters_button.clicked() {self.password_params.use_uppercase_chars = !self.password_params.use_uppercase_chars; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if lowercase_characters_button.clicked() {self.password_params.use_lowercase_chars = !self.password_params.use_lowercase_chars; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if numbers_button.clicked() {self.password_params.use_numbers = !self.password_params.use_numbers; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if logograms_button.clicked() {self.password_params.use_logograms = !self.password_params.use_logograms; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if punctuation_button.clicked() {self.password_params.use_punctuation = !self.password_params.use_punctuation; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if quotation_marks_button.clicked() {self.password_params.use_quotation_marks = !self.password_params.use_quotation_marks; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if dashes_and_slashes_button.clicked() {self.password_params.use_dashes_and_slashes = !self.password_params.use_dashes_and_slashes; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if maths_symbols_button.clicked() {self.password_params.use_maths_symbols = !self.password_params.use_maths_symbols; self.password_textedit = generator::generate_password(self, &self.password_params)};
-                    if use_brackets_button.clicked() {self.password_params.use_brackets = !self.password_params.use_brackets; self.password_textedit = generator::generate_password(self, &self.password_params)};
+                    if uppercase_characters_button.clicked() {self.password_params.use_uppercase_chars = !self.password_params.use_uppercase_chars; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1; self.generated_streams_count += 1;};
+                    if lowercase_characters_button.clicked() {self.password_params.use_lowercase_chars = !self.password_params.use_lowercase_chars; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if numbers_button.clicked() {self.password_params.use_numbers = !self.password_params.use_numbers; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if logograms_button.clicked() {self.password_params.use_logograms = !self.password_params.use_logograms; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if punctuation_button.clicked() {self.password_params.use_punctuation = !self.password_params.use_punctuation; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if quotation_marks_button.clicked() {self.password_params.use_quotation_marks = !self.password_params.use_quotation_marks; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if dashes_and_slashes_button.clicked() {self.password_params.use_dashes_and_slashes = !self.password_params.use_dashes_and_slashes; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if maths_symbols_button.clicked() {self.password_params.use_maths_symbols = !self.password_params.use_maths_symbols; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
+                    if use_brackets_button.clicked() {self.password_params.use_brackets = !self.password_params.use_brackets; self.password_textedit = generator::generate_password(self, &self.password_params); self.generated_streams_count += 1};
                 });
             });
         });
